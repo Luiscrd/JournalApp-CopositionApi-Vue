@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" @click="goToHome">
-        <img width="30" alt="Vue Logo" src="@/assets/logo_vue.png" />
+        <!-- <img width="30" alt="Vue Logo" src="@/assets/logo_vue.png" /> -->
+        <i class="fa fa-home text-primary pointer"></i>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

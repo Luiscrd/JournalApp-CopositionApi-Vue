@@ -1,11 +1,11 @@
 import { createStore } from 'vuex'
-import counterStore from './counter'
 
-export default createStore({
+import journalModule from '@/modules/daybook/store/journal'
 
-
+const store = createStore({
     modules: {
-        counter: counterStore,
+        journal: journalModule
     }
-
 })
+
+export default store
