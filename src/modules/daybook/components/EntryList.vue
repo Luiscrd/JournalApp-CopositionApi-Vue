@@ -1,20 +1,32 @@
 <template>
     <div class="entry-list-container">
         <div class="box-input px-2 pt-2 pb-2">
-            <input class="form-control" type="text" placeholder="Buscar entradas">
+            <input class="form-control" type="text" placeholder="Buscar entradas" v-model="term">
         </div>
         <div class="entry-scrollarea">
-            <Entry v-for="entry in 100" :key="entry" />
+            <Entry v-for="entry in entriesByTerm" :key="entry.id" :entry="entry" />
         </div>
     </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
         Entry: defineAsyncComponent(() => import('@/modules/daybook/components/Entry.vue')),
+    },
+    computed: {
+        ...mapGetters('journal', ['getEntriesByTerm']),
+        entriesByTerm() {
+            return this.getEntriesByTerm(this.term)
+        }
+    },
+    data() {
+        return {
+            term: ''
+        }
     }
 }
 </script>
@@ -26,7 +38,7 @@ export default {
     height: calc(100vh - 217px);
 }
 
-.box-input{
+.box-input {
     border-bottom: 1px solid #62B8FC;
 }
 
