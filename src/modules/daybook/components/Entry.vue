@@ -10,8 +10,7 @@
 </template>
 
 <script>
-const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+import getDayMonthYear from '@/modules/daybook/helpers/getDayMonthYear'
 
 export default {
     props: {
@@ -25,16 +24,16 @@ export default {
             return (this.entry.text.length > 130) ? this.entry.text.substring(0, 130) + '...' : this.entry.text
         },
         day() {
-            const date = new Date(this.entry.date)
-            return date.getDate()
+            const date = getDayMonthYear(this.entry.date)
+            return date.day
         },
         moth() {
-            const date = new Date(this.entry.date)
-            return months[date.getMonth()]
+            const date = getDayMonthYear(this.entry.date)
+            return date.month
         },
         yearDay() {
-            const date = new Date(this.entry.date)
-            return `${date.getFullYear()}, ${days[date.getDay()]}`
+            const date = getDayMonthYear(this.entry.date)
+            return date.yearDay
         }
     }
 }
