@@ -7,19 +7,19 @@
                 <span class="mx-2 fw-light">{{ yearDay }}</span>
             </div>
             <div>
-                <input type="file" @change="onSelectedImage">
+                <input v-show="false" type="file" @change="onSelectedImage" ref="imageSelector" accept="image/png, image/jpeg">
                 <button v-if="entry.id" type="button" class="btn btn-danger mx-2" @click="onDeleteEntry">Borrar<i
                         class="fa fa-trash-alt ms-3"></i></button>
-                <button type="button" class="btn btn-primary">Subir Foto<i class="fa fa-upload ms-3"></i></button>
+                <button @click="onSelectImage" type="button" class="btn btn-primary">Subir Foto<i class="fa fa-upload ms-3"></i></button>
             </div>
         </div>
         <div class="d-flex flex-column px-3">
             <textarea placeholder="¿Qué sucedió hoy?" v-model="entry.text"></textarea>
         </div>
         <Fab icon="fa-save" @on:click="saveEntry" />
-        <!-- <img class="img-thumbnail"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette3.wikia.nocookie.net%2Foutcast%2Fimages%2Ff%2Ff8%2FImagen-no-disponible.png%2Frevision%2Flatest%3Fcb%3D20160322191504%26path-prefix%3Des&f=1&nofb=1&ipt=07d3a24e446ce95d2172afa30aa5fb906a96c0022b8083ec3502dcd4fe92dc57&ipo=images"
-            alt="Entry Picture"> -->
+        <img v-if="entry.picture" class="img-thumbnail"
+            :src="entry.picture"
+            alt="Entry Picture">
         <img v-if="localImage" class="img-thumbnail"
             :src="localImage"
             alt="Entry Picture">
@@ -31,6 +31,7 @@ import { defineAsyncComponent } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import getDayMonthYear from '@/modules/daybook/helpers/getDayMonthYear'
 import Swal from 'sweetalert2'
+import uploadImage from '@/modules/daybook/helpers/uploadImage'
 
 export default {
     props: {
@@ -86,6 +87,10 @@ export default {
                 showConfirmButton: false,
                 timer: 1500
             })
+
+            const picture = await uploadImage(this.file)
+            this.entry.picture = picture
+
             if (this.entry.id) {
                 await this.updateEntry(this.entry)
             } else {
@@ -127,7 +132,7 @@ export default {
             this.file = file
         },
         onSelectImage() {
-            
+            this.$refs.imageSelector.click()
         }
     },
     created() {

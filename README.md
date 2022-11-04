@@ -28,3 +28,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * id-generator
 * Axios
 * sweetalert2
+* cloudinary-vue
