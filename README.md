@@ -26,3 +26,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * Vuex
 * uuid
 * id-generator
+* Axios
+* sweetalert2

@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" @click="$emit('on:click')">
         <i class="fa fa-2x" :class="icon"></i>
     </button>
 </template>
@@ -21,8 +21,8 @@ button{
     position: fixed;
     bottom: 90px;
     right: 20px;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 100%;
 }
 

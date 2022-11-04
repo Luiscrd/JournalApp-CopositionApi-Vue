@@ -3,6 +3,9 @@
         <div class="box-input px-2 pt-2 pb-2">
             <input class="form-control" type="text" placeholder="Buscar entradas" v-model="term">
         </div>
+        <div class="box-button d-flex flex-column p-2">
+            <button type="button" class="btn btn-primary" @click="$router.push({ name: 'entry', params: { id: 'new' } })">Nueva Entrada<i class="fa fa-plus-circle ms-3"></i></button>
+        </div>
         <div class="entry-scrollarea">
             <Entry v-for="entry in entriesByTerm" :key="entry.id" :entry="entry" />
         </div>
@@ -38,7 +41,7 @@ export default {
     height: calc(100vh - 217px);
 }
 
-.box-input {
+.box-input, .box-button {
     border-bottom: 1px solid #62B8FC;
 }
 
