@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component Debe de hacer mach con el snapshot 1`] = `
+<header-stub></header-stub>
+<router-view></router-view>
+<footer-stub></footer-stub>
+`;

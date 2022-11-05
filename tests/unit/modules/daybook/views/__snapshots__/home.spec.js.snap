@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el Home View Debe renderizar el componente correctamente 1`] = `
+<div class="container mt-5">
+  <h1>Hola mundo</h1>
+  <hr><button type="button" class="btn btn-primary m-2">Daybook</button><button type="button" class="btn btn-secondary m-2">Secondary</button><button type="button" class="btn btn-success m-2">Success</button>
+</div>
+`;

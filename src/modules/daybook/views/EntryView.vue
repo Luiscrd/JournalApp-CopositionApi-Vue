@@ -17,7 +17,7 @@
             <textarea placeholder="¿Qué sucedió hoy?" v-model="entry.text"></textarea>
         </div>
         <Fab icon="fa-save" @on:click="saveEntry" />
-        <img v-if="entry.picture" class="img-thumbnail"
+        <img v-if="entry.picture && !localImage" class="img-thumbnail"
             :src="entry.picture"
             alt="Entry Picture">
         <img v-if="localImage" class="img-thumbnail"
@@ -34,6 +34,7 @@ import Swal from 'sweetalert2'
 import uploadImage from '@/modules/daybook/helpers/uploadImage'
 
 export default {
+    name: 'EntryView',
     props: {
         id: {
             type: String,
