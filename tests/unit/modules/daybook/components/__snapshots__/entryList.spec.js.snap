@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el Fab component Debe renderizar el componente correctamente 1`] = `
+<div class="entry-list-container">
+  <div class="box-input px-2 pt-2 pb-2"><input class="form-control" type="text" placeholder="Buscar entradas"></div>
+  <div class="box-button d-flex flex-column p-2"><button type="button" class="btn btn-primary">Nueva Entrada<i class="fa fa-plus-circle ms-3"></i></button></div>
+  <div class="entry-scrollarea">
+    <entry-stub entry="[object Object]"></entry-stub>
+    <entry-stub entry="[object Object]"></entry-stub>
+  </div>
+</div>
+`;
