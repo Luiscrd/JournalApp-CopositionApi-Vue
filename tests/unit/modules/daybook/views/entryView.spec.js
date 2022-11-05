@@ -4,7 +4,6 @@ import { createStore } from 'vuex'
 import { journalState } from '../../../mook-data/test-journal-state'
 import journal from '@/modules/daybook/store/journal/index'
 
-
 describe('Pruebas en el Fab component', () => {
 
     const createVuexStore = (initialState) => createStore({
@@ -75,6 +74,5 @@ describe('Pruebas en el Fab component', () => {
         expect(mockRouter.push).toBeCalled()
        
     });
-
 
 })
