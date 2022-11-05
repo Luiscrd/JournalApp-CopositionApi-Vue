@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import journal from '@/modules/daybook/store/journal/index'
 import { journalState } from '../../../../mook-data/test-journal-state'
+import { updateEntry } from '@/modules/daybook/store/journal/actions'
 
 const createVuexStore = (initialState) => createStore({
     modules: {
@@ -135,6 +136,15 @@ describe('Vuex - Pruebas en el Journal Module', () => {
 
     });
 
+    test('Actions: loadEntries', async () => {
+
+        const store = createVuexStore({ isLoading: true, entries: [] })
+
+        await store.dispatch('journal/loadEntries')
+
+        expect(store.state.journal.entries.length).toBe(1)
+
+    });
 
 
 })
