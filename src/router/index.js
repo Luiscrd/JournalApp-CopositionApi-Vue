@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import daybookRouter from '@/modules/daybook/router/index'
+import ahutRouter from '@/modules/auth/router/index'
 
 const routes = [
   {
@@ -16,7 +17,12 @@ const routes = [
   {
     path: '/daybook',
     ...daybookRouter
-  }
+  },
+  {
+    path: '/ahut',
+    ...ahutRouter
+  },
+
 ]
 
 const router = createRouter({
