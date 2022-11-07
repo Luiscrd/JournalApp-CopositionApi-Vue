@@ -1,8 +1,6 @@
 import axios from "axios";
 import createVuexStore from "../../../mook-data/mock-store";
 
-
-
 describe('Vuex: pruebas en el auth-module', () => {
 
 
