@@ -6,12 +6,20 @@
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import useAuth from '@/modules/auth/composables/useAuth'
 
 export default {
   name: 'App',
   components: {
     Header: defineAsyncComponent( () => import('@/modules/shared/components/Header.vue')),
     Footer: defineAsyncComponent( () => import('@/modules/shared/components/Footer.vue')),
+  },
+  setup() {
+    const { auhtStatus, checkAuthentication } = useAuth()
+    checkAuthentication()
+    return {
+      auhtStatus
+    }
   }
 }
 </script>
