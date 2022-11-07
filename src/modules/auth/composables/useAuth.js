@@ -22,6 +22,7 @@ const useAuth = () => {
 
     const logout = () => {
         store.commit('auth/logout')
+        store.commit('journal/clearEntries')
     }
 
     return {
