@@ -179,5 +179,34 @@ describe('Vuex: pruebas en el auth-module', () => {
 
     })
 
+    test('Actions: logineUser - se loguea correctamente', async () => {
+
+        const store = createVuexStore({
+            status: 'not-authenticated',
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+
+        const userLogin = {
+            email: 'luiscrua@gmail.com',
+            password: '123456'
+        }
+
+        const { ok } = await store.dispatch('auth/logineUser', userLogin)
+
+        expect(ok).toBeTruthy()
+
+        const { status, user, idToken, refreshToken } = store.state.auth
+
+        expect(status).toBe('authenticated')
+
+        expect(user.name).toBe('Luis Carballo')
+
+        expect(idToken.length > 1).toBeTruthy()
+
+        expect(refreshToken.length > 1).toBeTruthy()
+
+    })
 
 })
