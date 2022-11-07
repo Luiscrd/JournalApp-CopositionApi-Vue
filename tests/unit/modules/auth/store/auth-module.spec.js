@@ -179,7 +179,7 @@ describe('Vuex: pruebas en el auth-module', () => {
 
     })
 
-    test('Actions: logineUser - se loguea correctamente', async () => {
+    test('Actions: logineUser y checkAuthentication - Positiva', async () => {
 
         const store = createVuexStore({
             status: 'not-authenticated',
@@ -193,9 +193,9 @@ describe('Vuex: pruebas en el auth-module', () => {
             password: '123456'
         }
 
-        const { ok } = await store.dispatch('auth/logineUser', userLogin)
+        const { ok: okLogin } = await store.dispatch('auth/logineUser', userLogin)
 
-        expect(ok).toBeTruthy()
+        expect(okLogin).toBeTruthy()
 
         const { status, user, idToken, refreshToken } = store.state.auth
 
@@ -206,6 +206,27 @@ describe('Vuex: pruebas en el auth-module', () => {
         expect(idToken.length > 1).toBeTruthy()
 
         expect(refreshToken.length > 1).toBeTruthy()
+
+        const { ok: okCheck } = await store.dispatch('auth/checkAuthentication')
+
+        expect(okCheck).toBeTruthy()
+
+    })
+
+    test('Actions: checkAuthentication - Fallo', async () => {
+
+        const store = createVuexStore({
+            status: 'not-authenticated',
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+
+        localStorage.clear()
+
+        const { ok: okCheck } = await store.dispatch('auth/checkAuthentication')
+
+        expect(okCheck).toBeFalsy()
 
     })
 
