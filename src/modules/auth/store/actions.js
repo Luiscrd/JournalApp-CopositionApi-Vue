@@ -20,7 +20,7 @@ export const createUser = async ({ commit }, user) => {
 export const logineUser = async ({ commit }, user) => {
     const { email, password } = user
     try {
-        const { data } = await authApi.post(':signInWithPassword', { email, password, volverSecureToken: true })
+        const { data } = await authApi.post(':signInWithPassword', { email, password, returnSecureToken: true })
         const { displayName, idToken, refreshToken } = data
         user.name = displayName
         commit('loginUser', { user, idToken, refreshToken })
@@ -31,6 +31,7 @@ export const logineUser = async ({ commit }, user) => {
 }
 
 export const checkAuthentication = async ({ commit }) => {
+    console.log('checkAuthentication: actions')
 
     const idToken = localStorage.getItem('idToken')
     const refreshToken = localStorage.getItem('refreshToken')
