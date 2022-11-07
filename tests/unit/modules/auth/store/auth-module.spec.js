@@ -1,3 +1,4 @@
+import axios from "axios";
 import createVuexStore from "../../../mook-data/mock-store";
 
 
@@ -95,7 +96,7 @@ describe('Vuex: pruebas en el auth-module', () => {
 
     })
 
-    test('Getters: username', () => {
+    test('Getters: myGettercurrentState', () => {
 
         const store = createVuexStore({
             status: 'authenticated',
@@ -107,5 +108,76 @@ describe('Vuex: pruebas en el auth-module', () => {
         expect(store.getters['auth/myGettercurrentState']).toBe('authenticated')
 
     })
+
+    test('Actions: createUser - Error usuario ya existe', async () => {
+
+        const store = createVuexStore({
+            status: 'not-authenticated',
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+
+        const newUser = {
+            name: 'Luis Carballo',
+            email: 'luiscrua@gmail.com',
+            password: '123456'
+        }
+
+        const { ok, msg } = await store.dispatch('auth/createUser', newUser)
+
+        expect(ok).toBeFalsy()
+
+        expect(msg).toBe('EMAIL_EXISTS')
+
+        const { status, user, idToken, refreshToken } = store.state.auth
+
+        expect(status).toBe('not-authenticated')
+
+        expect(user).toBe(null)
+
+        expect(idToken).toBe(null)
+
+        expect(refreshToken).toBe(null)
+
+    })
+
+    test('Actions: createUser - Crea correctamente y se borra', async () => {
+
+        const store = createVuexStore({
+            status: 'not-authenticated',
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+
+        const newUser = {
+            name: 'Coral Carrillo',
+            email: 'ccarrillo@gmail.com',
+            password: '123456'
+        }
+
+        const { ok } = await store.dispatch('auth/createUser', newUser)
+
+        expect(ok).toBeTruthy()
+
+        const { status, user, idToken, refreshToken } = store.state.auth
+
+        expect(status).toBe('authenticated')
+
+        expect(user.name).toBe('Coral Carrillo')
+
+        expect(idToken.length > 1).toBeTruthy()
+
+        expect(refreshToken.length > 1).toBeTruthy()
+
+        const { statusText } = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:delete?key=AIzaSyCRSBstjYJSunzlnMVVbJjAa2xqZcwOQLQ',{
+            idToken
+        })
+
+        expect(statusText).toBe('OK')
+
+    })
+
 
 })
