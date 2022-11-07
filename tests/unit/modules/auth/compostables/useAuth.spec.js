@@ -1,7 +1,12 @@
 import useAuth from "@/modules/auth/composables/useAuth"
 
 const mockStore = {
-    dispatch: jest.fn()
+    dispatch: jest.fn(),
+    commit: jest.fn(),
+    getters: {
+        'auth/currentState': 'auhtenticated',
+        'auth/username': 'Luis Carballo'
+    }
 }
 
 jest.mock('vuex', () => ({
@@ -71,7 +76,7 @@ describe('Pruebas en useAhut', () => {
 
     })
 
-    test('logineUser fallido', async () => {
+    test('logineUser fallido retorna false', async () => {
 
         const { logineUser } = useAuth()
 
@@ -90,7 +95,7 @@ describe('Pruebas en useAhut', () => {
 
     })
 
-    test('checkAuthentication exitoso', async () => {
+    test('checkAuthentication exitoso, retorna true', async () => {
 
         const { checkAuthentication } = useAuth()
 
@@ -104,7 +109,7 @@ describe('Pruebas en useAhut', () => {
 
     })
 
-    test('checkAuthentication fallido', async () => {
+    test('checkAuthentication fallido, retorna false', async () => {
 
         const { checkAuthentication } = useAuth()
 
@@ -117,5 +122,29 @@ describe('Pruebas en useAhut', () => {
         expect(mockStore.dispatch).toHaveBeenCalledWith("auth/checkAuthentication")
 
     })
+
+    test('logout', async () => {
+
+        const { logout } = useAuth()
+
+        logout()
+
+        expect(mockStore.commit).toHaveBeenCalledWith('auth/logout')
+
+        expect(mockStore.commit).toHaveBeenCalledWith('journal/clearEntries')
+
+    })
+
+    test('auhtStatus, username', async () => {
+
+        const { auhtStatus, username } = useAuth()
+
+        expect(auhtStatus.value).toBe('auhtenticated')
+
+        expect(username.value).toBe('Luis Carballo')
+
+    })
+
+    
 
 })

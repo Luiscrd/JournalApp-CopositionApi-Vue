@@ -16,7 +16,6 @@ const useAuth = () => {
     }
 
     const checkAuthentication = async() => {
-        console.log('checkAuthentication: useAuth')
         const resp = await store.dispatch('auth/checkAuthentication')
         return resp
     }
