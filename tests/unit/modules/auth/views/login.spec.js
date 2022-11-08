@@ -61,4 +61,28 @@ describe('Pruebas en el Login view', () => {
 
     })
 
+    test('Credenciales correctas, debe de redirigir a la ruta no-entry', async () => {
+
+        const wrapper = shallowMount(Login, {
+            global: {
+                plugins: [store]
+            }
+        })
+
+        store.dispatch = jest.fn().mockReturnValue({ ok: true })
+
+        const [txtEmail, txtPassword] = wrapper.findAll('input')
+
+        await txtEmail.setValue('lucrua@gmail.com')
+
+        await txtPassword.setValue('123456')
+
+        await wrapper.find('form').trigger('submit')
+
+        expect(store.dispatch).toHaveBeenCalledWith("auth/logineUser", {email: 'lucrua@gmail.com', password: '123456'})
+
+        expect(wrapper.router.push).toHaveBeenCalledWith({name: 'no-entry'})
+        
+    })
+
 })
