@@ -36,8 +36,8 @@ export default {
         const router = useRouter()
         const { logineUser } = useAuth()
         const urerForm = ref({
-            email: 'luiscrua@gmail.com',
-            password: '123456'
+            email: '',
+            password: ''
 
         })
 
@@ -49,7 +49,7 @@ export default {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Usuario o contraseña invalidos',
+                        text: msg,
                     })
                 } else {
                     router.push({ name: 'no-entry'})
