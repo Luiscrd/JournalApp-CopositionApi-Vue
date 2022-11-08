@@ -3,6 +3,7 @@
 </p>
 
 # JournalApp Vue
+Ver: [Ir a la web](https://dulcet-muffin-68404e.netlify.app/).
 
 ## Project setup
 ```
