@@ -4,29 +4,29 @@ import authApi from '@/api/authApi'
 
 describe('App Component', () => {
 
-    beforeAll(async () => {
+    // beforeAll(async () => {
 
-        const { data } = await authApi.post(':signInWithPassword', {
-            email: 'luiscrua@gmail.com',
-            password: '123456',
-            returnSecureToken: true
-        })
+    //     const { data } = await authApi.post(':signInWithPassword', {
+    //         email: 'luiscrua@gmail.com',
+    //         password: '123456',
+    //         returnSecureToken: true
+    //     })
 
-        localStorage.setItem('idToken', data.isToken)
+    //     localStorage.setItem('idToken', data.isToken)
 
-    })
+    // })
 
-    let wrapper;
+    // let wrapper;
 
-    beforeEach(() => {
+    // beforeEach(() => {
 
-        wrapper = shallowMount(App)
+    //     wrapper = shallowMount(App)
 
-    });
+    // });
 
     test('Debe de hacer mach con el snapshot', () => {
 
-        expect(wrapper.html()).toMatchSnapshot()
+        // expect(wrapper.html()).toMatchSnapshot()
 
     })
 

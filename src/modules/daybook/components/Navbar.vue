@@ -43,6 +43,7 @@
 <script>
 import useAuth from '@/modules/auth/composables/useAuth'
 import { useRouter } from 'vue-router'
+
 export default {
   setup() {
 
@@ -52,8 +53,8 @@ export default {
     return {
       username,
       onLogout: () => {
+        logout()
         router.push({ name: 'login' })
-       logout() 
       }
     }
 

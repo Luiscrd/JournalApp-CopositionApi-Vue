@@ -23,9 +23,34 @@ yarn build
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 * Bootstrap
+```
+yarn add bootstrap@v5.2.2
+```
 * Vuex
+```
+yarn add vuex@next --save
+```
 * uuid
+```
+yarn add uuid
+```
 * id-generator
+```
+yarn add id-generator
+```
 * Axios
+```
+yarn add axios
+```
 * sweetalert2
+```
+yarn add --save sweetalert2
+```
 * cloudinary-vue
+```
+yarn add cloudinary-vue
+```
+* vue-router-mock
+```
+yarn add vue-router-mock
+```
